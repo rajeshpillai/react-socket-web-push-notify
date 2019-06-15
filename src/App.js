@@ -16,6 +16,7 @@ function App() {
           React:Socket:Push Notification
         </a>
       </header>
+      <button id="btnSendPushNotif">Send Push Notification</button>
     </div>
   );
 }
