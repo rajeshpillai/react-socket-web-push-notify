@@ -19,6 +19,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `npm run build`
 
+## To send push notification
+1. Send a get request to http://localhost:4000/send-notification
+
 ## Steps to successfully setup service worker and push notification
 
 1. Put your service worker file in the public folder
