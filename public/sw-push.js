@@ -36,7 +36,18 @@ self.addEventListener("activate", async () => {
     const options = { applicationServerKey, userVisibleOnly: true };
 
     const subscription = await self.registration.pushManager.subscribe(options);
-    console.log(JSON.stringify(subscription));
+    console.log("subs: ", JSON.stringify(subscription));
+    /* LOG OUTPUT: Google
+        subs:  {"endpoint":"https://fcm.googleapis.com/fcm/send/c3DsU5n5NOA:APA91bGsQ_RdhGdQX7T2kipw-vILovDZxJlOD4SjlFAWVg2WAf2gTwqbJAnOgJhofW_W7aDFvUaJzrxYOdZUd1XnJZ6d3LO79_4ILUaiNEYmkb0gaCY-NkvU_x2-6_1xIp4bVf-Fg6Ll",
+        "expirationTime":null,
+        "keys":{"p256dh":"BOkas3eN-2DPbeY8RvR2g7NVOEcsmt5cOYTOSR-rihQKpPJWdODW4TFwk65vegkPDHue1iYbAe8W9mCzHWD67a4","auth":"jFL-bwVPRA_SnMoRIq-V7A"}}
+    */
+
+    /* LOG OUTPUT: Firefox
+        subs:  {"endpoint":"https://updates.push.services.mozilla.com/wpush/v2/gAAAAABdBgQO2MKPusxFsBeY5DU7XG-dJ1udXvfWoyK7PIcSkeP2p_vBwRBk8RQbWi2xl7h8rkqryqxnUOon_GoOKCfJmC78nptCE60iqryTfpH_5USoLp1GND-ySxE_eBEfOsXaSe6yReOLrQszBo2VHjv6NezaqmwDhLCbnzz7gn_ikQ_UqhA",
+        "keys":{"auth":"D3VDFb4jT4Bqn-iH8VzxJw","p256dh":"BE3P_2G0x2aJTmyuUysOrov1_PDJyZ603hraYOZEonCBAdGU5Wi1POHc6_Geseooawzig2zjGNfl6zkIamYEmxs"}} 
+
+    */
   } catch (err) {
     console.log("Error", err);
   }

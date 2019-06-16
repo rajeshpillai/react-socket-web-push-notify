@@ -20,7 +20,9 @@ const registerServiceWorker = async () => {
   const swUrl = `${process.env.PUBLIC_URL}/sw-push.js`;
   console.log("swUrl", swUrl);
 
-  const swRegistration = await navigator.serviceWorker.register(swUrl);
+  const swRegistration = await navigator.serviceWorker.register(swUrl, {
+    scope: "/worker/"
+  });
   return swRegistration;
 };
 
@@ -49,7 +51,7 @@ const main = async () => {
   console.log("swReg", swRegistration);
 
   if (Notification.permission == "granted") {
-    navigator.serviceWorker.getRegistration(swRegistration.scope).then(reg => {
+    navigator.serviceWorker.getRegistration("/worker/").then(reg => {
       console.log("About to show notification", reg);
       reg.showNotification("Hello world!");
     });
