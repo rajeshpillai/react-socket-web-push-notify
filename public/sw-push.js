@@ -24,6 +24,19 @@ const urlB64ToUint8Array = base64String => {
   return outputArray;
 };
 
+// saveSubscription saves the subscription to the backend
+const saveSubscription = async subscription => {
+  const SERVER_URL = "http://localhost:3000/save-subscription";
+  const response = await fetch(SERVER_URL, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(subscription)
+  });
+  return response.json();
+};
+
 self.addEventListener("activate", async () => {
   // This will be called only once when the service worker is activated.
   console.log("Hello from service worker.");
@@ -37,6 +50,10 @@ self.addEventListener("activate", async () => {
 
     const subscription = await self.registration.pushManager.subscribe(options);
     console.log("subs: ", JSON.stringify(subscription));
+
+    const response = await saveSubscription(subscription);
+    console.log(response);
+
     /* LOG OUTPUT: Google
         subs:  {"endpoint":"https://fcm.googleapis.com/fcm/send/c3DsU5n5NOA:APA91bGsQ_RdhGdQX7T2kipw-vILovDZxJlOD4SjlFAWVg2WAf2gTwqbJAnOgJhofW_W7aDFvUaJzrxYOdZUd1XnJZ6d3LO79_4ILUaiNEYmkb0gaCY-NkvU_x2-6_1xIp4bVf-Fg6Ll",
         "expirationTime":null,
@@ -50,5 +67,13 @@ self.addEventListener("activate", async () => {
     */
   } catch (err) {
     console.log("Error", err);
+  }
+});
+
+self.addEventListener("push", function(event) {
+  if (event.data) {
+    console.log("Push event!! ", event.data.text());
+  } else {
+    console.log("Push event but no data");
   }
 });
