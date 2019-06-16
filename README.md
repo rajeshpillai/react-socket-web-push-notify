@@ -15,7 +15,35 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `node index`
 
+## To run production build
+
 ### `npm run build`
+
+## Steps to successfully setup service worker and push notification
+
+1. Put your service worker file in the public folder
+2. Use 'scope' when registering service worker.
+3. For push notification, you need VAPID keys
+
+To create VAPID keys, use the following process.
+
+## npm install -g web-push
+
+## web-push generate-vapid-keys
+
+The above command will give you the output as below (use this to register service worker)
+
+=======================================
+
+Public Key:
+BLHxWiNVmr7ROB8O3KpPRJFAMhMypwe4X9TdWMmhsPSzHszo32PDkndpvWx3H0OY2HwFCQRU98JBpZ_AEsVxWG4
+
+Private Key:
+VXcSZD3mdKyXEmDZNrB02WTxgUZmdIpAEo5tnXR4OH4
+
+=======================================
+
+Refer: sw-push.js (in the public folder)
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
