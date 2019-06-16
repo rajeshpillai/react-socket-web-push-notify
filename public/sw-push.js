@@ -81,7 +81,7 @@ self.addEventListener("push", function(event) {
 self.addEventListener("push", function(event) {
   if (event.data) {
     console.log("Push event!! ", event.data.text());
-    showLocalNotification("Yolo", event.data.text(), self.registration);
+    showLocalNotification("Hurray !", event.data.text(), self.registration);
   } else {
     console.log("Push event but no data");
   }

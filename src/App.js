@@ -1,7 +1,7 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-const socket = require('socket.io-client')('http://localhost:4000');
+const socket = require("socket.io-client")("http://localhost:4000");
 
 function App() {
   return (
@@ -16,7 +16,11 @@ function App() {
           React:Socket:Push Notification
         </a>
       </header>
-      <button id="btnSendPushNotif">Send Push Notification</button>
+      <h2>Make a GET rquest to</h2>
+      <a href="http://localhost:4000/send-notification" target="_blank">
+        http://localhost:4000/send-notification
+      </a>
+      <h2>to test PUSH notification.</h2>
     </div>
   );
 }
