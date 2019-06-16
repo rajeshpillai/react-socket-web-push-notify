@@ -45,7 +45,8 @@ VXcSZD3mdKyXEmDZNrB02WTxgUZmdIpAEo5tnXR4OH4
 
 ## NOTE: Please don't use this key. Create a new one and use it.
 
-Refer: sw-push.js (in the public folder)
+Refer: sw-push.js (in the public folder) and server/index.js
+for registration. 
 
 ## To run production build
 
