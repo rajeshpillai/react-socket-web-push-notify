@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
 
 /* Notification service worker check */
 const check = () => {
@@ -25,20 +25,39 @@ const registerServiceWorker = async () => {
 };
 
 const requestNotificationPermission = async () => {
-  const permission = await window.Notification.requestPermission();
+  //const permission = await window.Notification.requestPermission();
+
+  Notification.requestPermission(status => {
+    console.log("Notification permission status:", status);
+  });
+
   // value of permission can be 'granted', 'default', 'denied'
   // granted: user has accepted the request
   // default: user has dismissed the notification permission popup by clicking on x
   // denied: user has denied the request.
-  if (permission !== "granted") {
-    throw new Error("Permission not granted for Notification");
-  }
+
+  // if (permission !== "granted") {
+  //   throw new Error("Permission not granted for Notification");
+  // }
 };
 
 const main = async () => {
   check();
   const swRegistration = await registerServiceWorker();
   const permission = await requestNotificationPermission();
+
+  console.log("swReg", swRegistration);
+
+  if (Notification.permission == "granted") {
+    navigator.serviceWorker.getRegistration(swRegistration.scope).then(reg => {
+      console.log("About to show notification", reg);
+      reg.showNotification("Hello world!");
+    });
+
+    // navigator.serviceWorker.ready.then(function(reg) {
+    //   new Notification("Helo");
+    // });
+  }
 };
 
 main();
